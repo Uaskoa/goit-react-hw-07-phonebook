@@ -14,13 +14,8 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import phonebookReducer from "./phonebook/phonebook-reducer";
+import { phonebookReducer } from "./phonebook/";
 // import storage from "redux-persist/lib/storage";
-
-// const myMiddleware = store => next => action =>  {
-//   console.log('My middleware', action);
-//   next(action)
-// }
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -28,7 +23,6 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-// myMiddleware,
   logger,
 ];
 
@@ -46,7 +40,6 @@ const rootReducer = combineReducers({
   contacts: phonebookReducer,
 });
 
-
 const store = configureStore({
   reducer: rootReducer,
   middleware,
@@ -61,16 +54,3 @@ const store = configureStore({
 // export default storeFunc;
 
 export default store;
-
-//// WITHOUT REDUX TOOLKIT
-// import { createStore, combineReducers } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-// import phonebookReducer from "./phonebook/phonebook-reducer";
-
-// const rootReducer = combineReducers({
-//   phonebook: phonebookReducer,
-// });
-
-// const store = createStore(rootReducer, composeWithDevTools());
-
-// export default store;

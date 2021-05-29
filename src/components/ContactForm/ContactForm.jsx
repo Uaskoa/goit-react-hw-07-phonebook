@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import phonebookOperations from "../../redux/phonebook/phonebook-operations";
+import { phonebookOperations } from "../../redux/phonebook/";
 import shortId from "shortid";
 import "./ContactForm.scss";
 import PropTypes from "prop-types";
@@ -13,8 +13,6 @@ class ContactForm extends Component {
 
   nameInputId = shortId.generate();
   phoneInputId = shortId.generate();
-
-
 
   handleNameChange = (event) => {
     this.setState({ name: event.currentTarget.value });
@@ -81,7 +79,7 @@ ContactForm.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit: ({ name, number }) =>
-    dispatch(phonebookOperations.addContact( name, number )),
+    dispatch(phonebookOperations.addContact(name, number)),
 });
 
 export default connect(null, mapDispatchToProps)(ContactForm);

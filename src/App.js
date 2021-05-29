@@ -1,19 +1,19 @@
-import {Component} from 'react';
-import {connect} from 'react-redux'
+import { Component } from "react";
+import { connect } from "react-redux";
 import Filter from "./components/Filter/Filter";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
-import phonebookOperations from "./redux/phonebook/phonebook-operations";
+import { phonebookOperations } from "./redux/phonebook/";
+import { getIsLoading } from "./redux/phonebook/phonebook-selectors";
 import "./styles.css";
 import "./App.scss";
 
-
 class App extends Component {
   componentDidMount() {
-    this.props.fetchContacts()
+    this.props.fetchContacts();
   }
 
-  render() {  
+  render() {
     return (
       <div className="App">
         <div className="container">
@@ -27,16 +27,16 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );}
+    );
+  }
 }
 
-const mapStateToProps = state => ({
-  isLoadingContacts: state.contacts.loading,
-})
+const mapStateToProps = (state) => ({
+  isLoadingContacts: getIsLoading(state),
+});
 
-const mapDispatchToProps = dispatch => ({
-fetchContacts: () => dispatch(phonebookOperations.fetchContacts())
-})
+const mapDispatchToProps = (dispatch) => ({
+  fetchContacts: () => dispatch(phonebookOperations.fetchContacts()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-

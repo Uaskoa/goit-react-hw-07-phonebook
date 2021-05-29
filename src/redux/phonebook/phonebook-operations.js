@@ -35,17 +35,21 @@ const addContact = (name, number) => async (dispatch) => {
   }
 };
 
-const deleteContact = (contactId) => async dispatch => {
+const deleteContact = (contactId) => async (dispatch) => {
   dispatch(deleteContactRequest());
 
   try {
-    const { data } = await axios.delete(`/contacts/${contactId}`);
-  dispatch(deleteContactSuccess(contactId))
+    await axios.delete(`/contacts/${contactId}`);
+    dispatch(deleteContactSuccess(contactId));
   } catch (error) {
-    dispatch(deleteContactError(error))
-  } 
-
+    dispatch(deleteContactError(error));
+  }
 };
+
+const phonebookOperations = { fetchContacts, addContact, deleteContact };
+
+export default phonebookOperations;
+// export default { fetchContacts, addContact, deleteContact };
 
 // const fetchContacts = () => (dispatch) => {
 //   dispatch(fetchContactsRequest());
@@ -75,5 +79,3 @@ const deleteContact = (contactId) => async dispatch => {
 //     .then(() => dispatch(deleteContactSuccess(contactId)))
 //     .catch((error) => dispatch(deleteContactError(error)));
 // };
-
-export default { fetchContacts, addContact, deleteContact };

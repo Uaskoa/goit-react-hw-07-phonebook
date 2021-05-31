@@ -1,9 +1,14 @@
 {
   "contacts": [
     {
-      "name": "anna",
-      "number": "89789798",
+      "name": "Hello",
+      "number": "111111111",
       "id": 1
+    },
+    {
+      "name": "world",
+      "number": "2222222",
+      "id": 2
     }
   ]
 }

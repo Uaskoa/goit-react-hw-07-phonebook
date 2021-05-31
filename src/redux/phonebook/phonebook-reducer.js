@@ -42,4 +42,3 @@ export default combineReducers({
   filter,
   loading,
 });
-
